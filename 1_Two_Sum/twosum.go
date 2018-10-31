@@ -1,6 +1,6 @@
 package twosum
 
-func TwoSum(nums []int, target int) []int {
+func twoSum(nums []int, target int) []int {
 	l := len(nums)
 	for i := 0; i < l; i++ {
 		for j := i + 1; j < l; j++ {
@@ -13,7 +13,7 @@ func TwoSum(nums []int, target int) []int {
 	return nil
 }
 
-func TwoSum2(nums []int, target int) []int {
+func twoSum2(nums []int, target int) []int {
 	m := make(map[int]int)
 	var i, j, n, t int
 	var ok bool

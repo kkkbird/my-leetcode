@@ -11,7 +11,7 @@ func TestTwoSum(t *testing.T) {
 	target := 6
 	expected := []int{1, 2}
 
-	rlt := TwoSum2(nums, target)
+	rlt := twoSum(nums, target)
 
 	if !reflect.DeepEqual(rlt, expected) {
 		fmt.Println(rlt)

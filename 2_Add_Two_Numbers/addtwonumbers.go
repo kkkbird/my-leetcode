@@ -5,7 +5,7 @@ type ListNode struct {
 	Next *ListNode
 }
 
-func AddTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
+func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 	var rlt *ListNode = &ListNode{
 		-1,
 		nil,
@@ -101,6 +101,6 @@ func node2Int(l *ListNode) (rlt int) {
 }
 
 //无法通过，有溢出错误
-func AddTwoNumbers2(l1 *ListNode, l2 *ListNode) *ListNode {
+func addTwoNumbers2(l1 *ListNode, l2 *ListNode) *ListNode {
 	return int2Node(node2Int(l1) + node2Int(l2))
 }

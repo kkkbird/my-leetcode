@@ -39,7 +39,7 @@ func TestAddTwoNumbers(t *testing.T) {
 	l2 := []int{5, 6, 4}
 	expected := []int{6, 6, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1}
 
-	rlt := node2Slice(AddTwoNumbers2(slice2Node(l1), slice2Node(l2)))
+	rlt := node2Slice(addTwoNumbers(slice2Node(l1), slice2Node(l2)))
 
 	if !reflect.DeepEqual(rlt, expected) {
 		fmt.Println(rlt)
