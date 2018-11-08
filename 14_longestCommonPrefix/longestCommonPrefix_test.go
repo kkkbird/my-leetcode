@@ -7,8 +7,9 @@ import (
 
 func TestLongestCommonPrefix(t *testing.T) {
 	d := map[string][]string{
+		"":   []string{},
 		"fl": []string{"flower", "flow", "flight"},
-		"":   []string{"dog", "racecar", "car"},
+		//"":   []string{"dog", "racecar", "car"},
 	}
 	for e, strs := range d {
 		r := longestCommonPrefix(strs)
