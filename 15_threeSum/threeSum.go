@@ -45,13 +45,30 @@ func threeSum2(nums []int) [][]int {
 		return rlt
 	}
 
-	var firstZero, lastZero int
+	var firstZero, lastZero, negetiveEnd, positiveStart = -1, -1, -1, -1
 
-	if firstZero = sort.SearchInts(nums, 0); firstZero < len(nums) { //has 0
-		lastZero = firstZero + 1
+	if nums[0] > 0 || nums[l-1] < 0 { //all positive or all negetive
+		return rlt
+	}
 
-		for lastZero < l && nums[lastZero] == 0 {
-			lastZero++
+	for i := 1; i < l; i++ {
+		if nums[i-1] < 0 {
+			if nums[i] == 0 {
+				firstZero = i
+				lastZero = i + 1
+				negetiveEnd = i
+				positiveStart = i + 1
+			} else if nums[i] > 0 {
+				negetiveEnd = i
+				positiveStart = i
+			}
+		} else if nums[i-1] == 0 {
+			if nums[i] == 0 {
+				lastZero = i + 1
+				positiveStart = i + 1
+			} else {
+				positiveStart = i
+			}
 		}
 	}
 
@@ -59,32 +76,30 @@ func threeSum2(nums []int) [][]int {
 		rlt = append(rlt, []int{0, 0, 0})
 	}
 
-	if firstZero == 0 || lastZero == l {
-		return rlt
-	}
+	var m map[int]byte
+	if firstZero > 0 {
+		m = make(map[int]byte)
+		for i := 0; i < firstZero; i++ {
+			m[-nums[i]] = 0
+		}
 
-	m := make(map[int]byte)
-
-	for i := 0; i < firstZero; i++ {
-		m[-nums[i]] = 0
-	}
-
-	for i := lastZero; i < l; i++ {
-		if v, ok := m[nums[i]]; ok {
-			if v == 0 {
-				m[nums[i]] = 1
-				rlt = append(rlt, []int{-nums[i], 0, nums[i]})
+		for i := lastZero; i < l; i++ {
+			if v, ok := m[nums[i]]; ok {
+				if v == 0 {
+					m[nums[i]] = 1
+					rlt = append(rlt, []int{-nums[i], 0, nums[i]})
+				}
 			}
 		}
 	}
 
 	m = make(map[int]byte)
 
-	for i := 0; i < firstZero; i++ {
+	for i := 0; i < negetiveEnd; i++ {
 		m[-nums[i]] = 0
 	}
 
-	for i := lastZero; i < l-1; i++ {
+	for i := positiveStart; i < l-1; i++ {
 		for j := i + 1; j < l; j++ {
 			if v, ok := m[nums[i]+nums[j]]; ok {
 				if v == 0 {
@@ -97,12 +112,12 @@ func threeSum2(nums []int) [][]int {
 
 	m = make(map[int]byte)
 
-	for i := lastZero; i < l; i++ {
+	for i := positiveStart; i < l; i++ {
 		m[-nums[i]] = 0
 	}
 
-	for i := 0; i < firstZero-1; i++ {
-		for j := i + 1; j < firstZero; j++ {
+	for i := 0; i < negetiveEnd-1; i++ {
+		for j := i + 1; j < negetiveEnd; j++ {
 			if v, ok := m[nums[i]+nums[j]]; ok {
 				if v == 0 {
 					m[nums[i]] = 1
